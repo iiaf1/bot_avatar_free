@@ -1,125 +1,100 @@
 # Bot Avatar Free
 
-## وش فيه
-- `Path.png` — تصميم الإطار.
-- `compositor.py` — يدمج صورة البروفايل + الخلفية داخل الإطار.
-- `bot.py` — بوت ديسكورد فيه أمرين:
-  - **`/av`** — يطلب صورة (إجباري) وخلفية (اختياري).
-    - ما يطلع أي أثر لاستخدام الأمر بالقناة ("فلان used /av") — الرد
-      على التفاعل نفسه مخفي (ephemeral)، وبعدها يرسل الصورة كرسالة
-      عادية من البوت بدون أي نص فوقها.
-    - يضيف زر **تحميل ⬇️** تحت الصورة.
-    - **مقيّد**: ما يشتغل إلا لصاحب البوت أو لعضو معه الرتبة اللي
-      تحددت بأمر `/mm` (تحت).
-  - **`/mm`** — يحدد الرتبة المسموح لها تستخدم `/av` بهذا السيرفر.
-    - ما يشتغل إلا لصاحب البوت أو لعضو عنده صلاحية **Administrator**.
-    - الحفظ **تلقائي بالكامل**: تكتب `/mm رتبة:<اختر الرتبة>` مرة
-      وحدة وخلاص — ينحفظ بملف `guild_roles.json` بدون أي تعديل يدوي
-      على `.env` أو أي ملف ثاني. تقدر تغيّرها أي وقت بإعادة استخدام
-      الأمر برتبة ثانية.
-  - **`/by`** — يعرض حقوق الملكية والتواصل (المؤلف، الرخصة، Discord،
-    GitHub). **عام بدون أي قيد** — أي شخص بأي سيرفر يقدر يستخدمه.
-- `guild_roles.json` — ملف يتولد تلقائيًا أول ما تستخدم `/mm` (يخزّن
-  رتبة كل سيرفر). لا تحتاج تسويه يدوي.
-- `reset_commands.py` — سكربت تشغّله **مرة وحدة** لحل مشكلة تكرار الأوامر.
-- `.env` — التوكن + آيدي المالك بس.
-- `requirements.txt` — المكتبات المطلوبة.
-- `LICENSE` — رخصة MIT (مشروع مفتوح المصدر ومجاني الاستخدام).
+## What's Included
+- `Path.png` — Frame design.
+- `compositor.py` — Merges the profile picture and background within the frame.
+- `bot.py` — A Discord bot featuring two commands:
+- **`/av`** — Requests an image (required) and a background (optional). 
+- Leaves no trace of command usage in the channel (no "User used /av" message); the initial interaction response is **ephemeral**, and the final image is sent as a standard bot message without accompanying text. 
+- Adds a **Download ⬇️** button below the image. 
+- **Restricted**: Works only for the bot owner or a member holding the role specified via the `/mm` command (see below). 
+- **`/mm`** — Sets the role authorized to use `/av` in the current server. 
+- Accessible only to the bot owner or a member with **Administrator** permissions. 
+- **Fully automated saving**: Run `/mm role:<select_role>` once, and it’s done—saved to `guild_roles.json` without manual edits to `.env` or other files. You can change it anytime by re-running the command with a different role. 
+- **`/by`** — Displays credits and contact info (author, license, Discord, GitHub). **Public/Unrestricted** — usable by anyone on any server.
+- `guild_roles.json` — Automatically generated upon the first use of `/mm` (stores the authorized role for each server). No manual setup required.
+- `reset_commands.py` — A script to be run **once** to resolve duplicate command issues. - `.env` — Contains only the token and the owner's ID.
+- `requirements.txt` — Required libraries.
+- `LICENSE` — MIT License (open-source and free-to-use project).
 
-## تدفق الأزرار (تحميل ← إرسال)
-1. أي عضو بالروم يشوف **الصورة المؤطرة** (بالإطار) مع زر **تحميل**.
-2. يضغط **تحميل** → تطلع له نفس الصورة المؤطرة **بشكل مخفي** (ephemeral،
-   هو بس اللي يشوفها) مع زر **إرسال** تحتها.
-3. يضغط **إرسال** → البوت يبعث له في **الخاص (DM)** الصورتين
-   **الأصليتين منفصلتين** (الصورة + الخلفية) **بدون الإطار**.
-   - إذا كان الخاص عنده مقفول، يوصله تنبيه بدل الصور.
+## Button Workflow (Download → Send)
+1. Any member in the channel sees the **framed image** (with the frame) alongside a **Download** button.
+2. They click **Download** → The same framed image appears **privately** (ephemeral—visible only to them) with a **Send** button underneath.
+3. They click **Send** → The bot sends them the two **original, separate images** (the photo and the background) **without the frame** via **Direct Message (DM)**. 
+- If their DMs are closed, they receive a notification instead of the images.
 
-## القيد: لازم رتبة (أو تكون المالك) — تحدد تلقائيًا بـ /mm
-ما تحتاج تلمس `.env` عشان تحدد الرتبة. بدالها:
+## Restriction: Role Required (or Owner Status) — Set automatically via `/mm`
+You don't need to edit `.env` to set the role. Instead:
 
-1. داخل السيرفر، اكتب:
-   ```
-   /mm رتبة:<اختر الرتبة من القائمة>
-   ```
-   (بس المالك أو أدمن السيرفر يقدر يستخدم هذا الأمر.)
-2. البوت يحفظ الرتبة تلقائيًا لهذا السيرفر بالذات — أي عضو معه هذي
-   الرتبة يصير يقدر يستخدم `/av` فورًا.
-3. تبي تغيّرها؟ عيد استخدام `/mm` برتبة ثانية أي وقت.
-
-⚠️ إذا ما حد سوّى `/mm` بعد بهذا السيرفر، **ما حد غير المالك** يقدر
-يستخدم `/av` (رفض افتراضي، أسلم من ترك الباب مفتوح للكل بالغلط).
-
-## تكرار الأوامر بقائمة "/" — السبب والحل
-يصير لسببين شائعين:
-- سوّيت مزامنة (`sync`) مرة على مستوى سيرفر (guild command) ومرة عالمي
-  (global) بنفس الوقت لنفس الأمر → ديسكورد يعرض نسختين لين تتوحّد.
-- تطبيق البوت مفعّل عنده **User Install** مع **Guild Install** بنفس
-  الوقت من Discord Developer Portal → Installation.
-
-**الحل:**
-1. تأكد إن البوت **لسا داخل السيرفر** اللي فيه التكرار، وشغّل
-   `reset_commands.py` **مرة وحدة** — يمسح الأوامر العالمية + أي
-   أوامر محلية (guild-scoped) مسجّلة بكل سيرفر البوت عضو فيه حاليًا:
-   ```
-   python3 reset_commands.py
-   ```
-2. لو التكرار موجود برضو بعد الخطوة السابقة، راجع Discord Developer
-   Portal → تطبيقك → **Installation**، وتأكد إن مفعّل عندك سياق واحد
-   بس (**Guild Install**) — تفعيل **User Install** مع **Guild Install**
-   بنفس الوقت يخلي الأمر يظهر مرتين حتى لو ما فيه تكرار فعلي بالتسجيل.
-3. شغّل `bot.py` عادي بعدها (يسوي مزامنة عالمية تلقائيًا فقط، بدون أي
-   تسجيل محلي — فما راح يرجع يصير تكرار من نفس السبب مرة ثانية).
-
-## التشغيل
-1. ثبّت المكتبات:
-   ```
-   pip install -r requirements.txt
-   ```
-2. عبّي `.env` (بس هذولا):
-   ```
-           DISCORD_TOKEN=00000000000000000000000000000000000000000000000000000000000000000
-           BOT_OWNER_ID=000000000000000000
-
-   ```
-3. شغّل:
-   ```
-   python3 bot.py
-   ```
-4. داخل كل سيرفر تبي تفعّل فيه البوت، شغّل `/mm` وحدد الرتبة
-   المسموح لها تستخدم `/av`.
-
-## الاستخدام
+1. Inside the server, type:
 ```
-/av صورة:<ارفاق صورتك>  خلفية:<ارفاق خلفية (اختياري)>
-/mm رتبة:<اختر الرتبة>
-/by   ← عام، بدون أي قيد
+/mm role:<select role from the list>
+```
+(Only the owner or a server admin can use this command.)
+2. The bot automatically saves the role for that specific server—any member holding that
+role can immediately use `/av`.
+3. Want to change it? Simply run `/mm` again with a different role at any time.
+
+⚠️ If no one has run `/mm` in the server yet, **no one except the owner** can
+use `/av` (default denial; safer than accidentally leaving access open to everyone). ## Duplicate "/" Commands — Cause and Solution
+This happens for two common reasons:
+- You synchronized the same command at both the guild level (guild command) and the global level simultaneously → Discord displays two versions until they merge.
+- The bot application has both **User Install** and **Guild Install** enabled simultaneously in the Discord Developer Portal under **Installation**.
+
+**Solution:**
+1. Ensure the bot is **still in the server** where the duplication is occurring, then run `reset_commands.py` **once**—this deletes global commands as well as any local (guild-scoped) commands registered in every server the bot is currently in:
+```
+python3 reset_commands.py
+```
+2. If the duplication persists after the previous step, check the Discord Developer Portal → your app → **Installation**, and ensure only one context is enabled (**Guild Install**). Enabling both **User Install** and **Guild Install** simultaneously causes the command to appear twice, even if there is no actual duplication in the registration itself.
+3. Run `bot.py` normally afterward (it performs automatic global synchronization only, without any local registration, so the duplication won't recur for the same reason). ## Setup
+1. Install the libraries:
+```
+pip install -r requirements.txt
+```
+2. Fill in the `.env` file (only these fields):
+```
+DISCORD_TOKEN=00000000000000000000000000000000000000000000000000000000000000000
+BOT_OWNER_ID=000000000000000000
+
+```
+3. Run the bot:
+```
+python3 bot.py
+```
+4. In each server where you want to enable the bot, run `/mm` and select the role
+authorized to use `/av`.
+
+## Usage
+```
+/av image:<attach your image>  background:<attach background (optional)>
+/mm role:<select the role>
+/by   ← Public, without any restrictions
 ```
 
 ### ══════════════════════════════════════════════════════════════════
-### 📬 الاتصال والدعم
-### للاستفسارات، الإبلاغ عن الأخطاء، أو المساهمة في تطوير المشروع:
+### 📬 Contact and Support
+### For inquiries, bug reports, or to contribute to the project:
 ### 💬 Discord: `iaf0`
 ### 🐙 GitHub: https://github.com/iiaf1
-### يمكنك فتح Issue على GitHub أو التواصل معي عبر Discord للحصول على الدعم.
+### You can open an Issue on GitHub or contact me via Discord for support.
 ### ══════════════════════════════════════════════════════════════════
 
-## © حقوق الملكية
+## © Copyright
 
 **Bot Avatar Free**
-Copyright © 2026 **iaf1**. جميع الأكواد والملفات بهذا المستودع من تأليف
-وملكية iaf1، ما لم يُذكر خلاف ذلك صراحةً.
-
-- **المؤلف / المالك:** iaf1
+Copyright © 2026 **iaf1**. All code and files in this repository are authored by
+and the property of iaf1, unless explicitly stated otherwise. - **Author / Owner:** iaf1
 - **Discord:** `iaf0`
 - **GitHub:** https://github.com/iiaf1
-- **الرخصة:** MIT License — نص الرخصة الكامل بملف [`LICENSE`](./LICENSE).
-- **يسمح لك بموجب الرخصة:** الاستخدام، النسخ، التعديل، الدمج، النشر،
-  التوزيع، وإعادة الترخيص (تجاريًا أو غير تجاري) بحرية تامة.
-- **الشرط الوحيد:** إبقاء إشعار حقوق الملكية (هذا) ونص رخصة MIT مرفقين
-  مع أي نسخة أو جزء جوهري من الكود، حتى لو عدّلته أو أعدت توزيعه.
-- **إخلاء مسؤولية:** المشروع مقدَّم "كما هو" بدون أي ضمانات؛ المؤلف غير
-  مسؤول عن أي ضرر ناتج عن استخدامه (التفاصيل الكاملة بملف `LICENSE`).
-- **الأصول المرفقة:** تصميم الإطار `Path.png` جزء من هذا المشروع
-  ومشمول بنفس الرخصة أعلاه.
+- **License:** MIT License — Full license text in the [`LICENSE`](./LICENSE) file.
+- **Permitted under the license:** You are free to use, copy, modify, merge, publish,
+distribute, and sublicense (commercially or non-commercially).
+- **Only condition:** You must include the copyright notice (this one) and the MIT license text
+with any copy or substantial portion of the code, even if modified or redistributed.
+- **Disclaimer:** The project is provided "as is" without any warranties; the author is not
+liable for any damages resulting from its use (full details in the `LICENSE` file).
+- **Included assets:** The frame design `Path.png` is part of this project
+and is covered by the same license mentioned above.
 
-© 2026 iaf1 — Licensed under the MIT License.
+© 2026 iaf1 — Licensed under the MIT License
