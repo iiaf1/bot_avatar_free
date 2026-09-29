@@ -72,29 +72,57 @@ authorized to use `/av`.
 /by   ← Public, without any restrictions
 ```
 
-### ══════════════════════════════════════════════════════════════════
-### 📬 Contact and Support
-### For inquiries, bug reports, or to contribute to the project:
-### 💬 Discord: `iaf0`
-### 🐙 GitHub: https://github.com/iiaf1
-### You can open an Issue on GitHub or contact me via Discord for support.
-### ══════════════════════════════════════════════════════════════════
+## 📬 Contact and Support
 
-## © Copyright
+For inquiries, bug reports, suggestions, or to contribute to the project:
+
+* 💬 **Discord:** `iaf0`
+* 🐙 **GitHub:** [github.com/iiaf1](https://github.com/iiaf1?utm_source=chatgpt.com)
+
+You can open an **Issue** on GitHub or contact me via Discord for support and assistance.
+
+---
+
+## © Copyright and Usage
 
 **Bot Avatar Free**
-Copyright © 2026 **iaf1**. All code and files in this repository are authored by
-and the property of iaf1, unless explicitly stated otherwise. - **Author / Owner:** iaf1
-- **Discord:** `iaf0`
-- **GitHub:** https://github.com/iiaf1
-- **License:** MIT License — Full license text in the [`LICENSE`](./LICENSE) file.
-- **Permitted under the license:** You are free to use, copy, modify, merge, publish,
-distribute, and sublicense (commercially or non-commercially).
-- **Only condition:** You must include the copyright notice (this one) and the MIT license text
-with any copy or substantial portion of the code, even if modified or redistributed.
-- **Disclaimer:** The project is provided "as is" without any warranties; the author is not
-liable for any damages resulting from its use (full details in the `LICENSE` file).
-- **Included assets:** The frame design `Path.png` is part of this project
-and is covered by the same license mentioned above.
+Copyright © 2026 **iaf1**
 
-© 2026 iaf1 — Licensed under the MIT License
+All original code, files, and resources in this repository were created by and are the property of **iaf1**.
+
+* **Author / Owner:** iaf1
+* **Discord:** `iaf0`
+* **GitHub:** [github.com/iiaf1](https://github.com/iiaf1?utm_source=chatgpt.com)
+
+### 📜 License and Terms of Use
+
+This project is provided **completely free of charge** for personal, non-commercial use.
+
+You are permitted to:
+
+* Use the project for free.
+* Copy the source code.
+* Modify and customize the code.
+* Create derivative works for personal or non-commercial purposes.
+* Share the project freely, provided the original copyright notice and these terms are retained.
+
+### 🚫 Commercial Use and Resale
+
+You may not **sell, resell, sublicense, or distribute this project as a paid product or service** (including the source code and included original resources) without the express written permission of the author.
+
+You may not:
+
+* Sell the project or any substantial part of its code. * Repackaging the project and offering it as a paid product.
+* Charging users for access to the original project or a substantially similar modified version.
+* Claiming ownership of the original work or its code.
+
+Any commercial use requires **prior written permission from iaf1**. ### 🎨 Included Resources
+
+The frame design **`Path.png`** is an original resource included with this project and is subject to the same usage restrictions listed above.
+
+### ⚠️ Disclaimer
+
+This project is provided **"as is"** and without any warranties of any kind. The author assumes no liability for any damages, losses, or issues arising from the use or modification of this project.
+
+© 2026 **iaf1** — All rights reserved, except for the permissions expressly granted above.
+
